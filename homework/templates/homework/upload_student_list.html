@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'homework/css/upload_student_list.css' %}" rel="stylesheet" />
+        <title>上传学生名单</title>
+    </head>
+    <body>
+        <div class="form_login_div">
+            <form class="form_login">
+                {% csrf_token %}
+                </br></br></br></br>
+                <h1>请上传本班级学生名单</h1></br></br>
+                <form enctype="multipart/form-data" action="{% url 'homework:upload_student_list_action' teacher.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="file" name="myfile" />
+                    </br></br>
+                    <input type="submit" value="提交"/>
+                </form>
+            </form>
+        </div><!-- /container -->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

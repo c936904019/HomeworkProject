@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'homework/css/do_task.css' %}" rel="stylesheet" />
+        <title>查看题目</title>
+    </head>
+    <body>
+        <div class="form_login_div">
+            <div class="form_login">
+            <p>
+                <h2>作业名称：&nbsp;{{ task.task_title }}</h2>
+                <h5 class="login_title">发布时间：{{ task.time }}</h5>
+                <h5 class="login_title">总分：{{ task.value }}</h5>
+            </p>
+            <p>
+                <table id="tables" align="center">
+                {% for k,v in dic.items %}
+                    <tr>
+                        <td><h3>{{ forloop.counter }}&nbsp;&nbsp;{{ k.question_title }} ({{ k.value }}分)</h3></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form enctype="multipart/form-data" action="{% url 'homework:do_task_action' student.student_id k.id task.id forloop.counter%}" method="post">
+                            {% csrf_token %}
+                                {% if v == '未提交' %}
+                                    <input type="file" name="answer{{ forloop.counter }}">
+                                    <input type="submit" value="提交">
+                                    <br>
+                                    <h6 class="login_title"><strong>{{ v }}</strong></h6>
+                                {% elif v == '未批改' %}
+                                    <input type="file" name="answer{{ forloop.counter }}">
+                                    <input type="submit" value="提交">
+                                    <br>
+                                    <h6 class="login_title"><strong>{{ v }}</strong></h6>
+                                    <br>
+                                    <a href="{% url 'homework:show_image' student.student_id k.id %}">查看提交的内容</a>
+                                {% elif v == '已批改' %}
+                                    <h6 class="login_title"><strong>{{ v }}</strong></h6>
+                                    <br>
+                                    <a href="{% url 'homework:show_image' student.student_id k.id %}">查看提交的内容</a>
+                                {% endif %}
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </p>
+            </div>
+        </div><!-- /container -->
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

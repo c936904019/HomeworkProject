@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'homework/css/index_teacher.css' %}" rel="stylesheet" />
+        <title>教师主页</title>
+    </head>
+    <body>
+        <div class="bgk">
+            <div class="bgk-image" style="background-image: url('../../static/homework/image/7.jpg')"></div>
+        </div>
+        <div class="form_login_div">
+            <form class="form_login">
+                {% csrf_token %}
+                </br></br></br>
+                <h1>欢迎登录！{{ teacher.name }}老师</h1></br>
+                <div style="font-size:24px">
+                    <a href="{% url 'homework:upload_student_list' teacher.id %}">上传学生名单</a>
+                </div></br>
+                <div style="font-size:24px">
+                    <a href="{% url 'homework:upload_homework' teacher.id %}">发布作业</a>
+                </div></br>
+                <div style="font-size:24px">
+                    <a href="{% url 'homework:edit_homework' teacher.id %}">管理已发布作业</a>
+                </div></br>
+                <div style="font-size:24px">
+                    <a href="{% url 'homework:correct_homework' teacher.id %}">批改作业</a>
+                </div></br>
+                <div style="font-size:24px">
+                    <a href="{% url 'homework:show_statistics' teacher.id %}">查看作业提交统计</a>
+                </div></br>
+            </form>
+        </div><!-- /container -->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,89 @@
+{% load extra_tags %}
+{% load static %}
+<!DOCTYPE html>
+<script type="text/javascript">
+<!--
+/* http://www.alistapart.com/articles/zebratables/ */
+function removeClassName (elem, className) {
+	elem.className = elem.className.replace(className, "").trim();
+}
+
+function addCSSClass (elem, className) {
+	removeClassName (elem, className);
+	elem.className = (elem.className + " " + className).trim();
+}
+
+String.prototype.trim = function() {
+	return this.replace( /^\s+|\s+$/, "" );
+}
+
+function stripedTable() {
+	if (document.getElementById && document.getElementsByTagName) {
+		var allTables = document.getElementsByTagName('table');
+		if (!allTables) { return; }
+
+		for (var i = 0; i < allTables.length; i++) {
+			if (allTables[i].className.match(/[\w\s ]*scrollTable[\w\s ]*/)) {
+				var trs = allTables[i].getElementsByTagName("tr");
+				for (var j = 0; j < trs.length; j++) {
+					removeClassName(trs[j], 'alternateRow');
+					addCSSClass(trs[j], 'normalRow');
+				}
+				for (var k = 0; k < trs.length; k += 2) {
+					removeClassName(trs[k], 'normalRow');
+					addCSSClass(trs[k], 'alternateRow');
+				}
+			}
+		}
+	}
+}
+
+window.onload = function() { stripedTable(); }
+-->
+</script>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'homework/css/show_statistics.css' %}" rel="stylesheet" />
+        <link href="{% static 'homework/css/table_css2.css' %}" rel="stylesheet" type="text/css">
+        <title>查看作业提交统计</title>
+</head>
+    <body>
+        <div class="form_login_div">
+            <form class="form_login">
+                </br></br></br>
+                <a>作业得分情况</a>
+                </br></br></br>
+                <table class="scrollTable" cellpadding="0" cellspacing="0"border="1" align="center">
+                    <tr>
+                        <td></td>
+                        {% for i in tasks|count %}
+                            <td>{{ tasks|title:i}}({{ tasks|value:i }}分)</td>
+                        {% endfor %}
+                    </tr>
+                    {% for i in students|count %}
+                        <tr>
+                            <td>{{ students|name:i}}</td>
+                            {% for j in tasks|count %}
+                             <td>{{ i|join:j|index:grades }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </form>
+        </div><!-- /container -->
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

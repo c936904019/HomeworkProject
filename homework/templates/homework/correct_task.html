@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'homework/css/correct_task.css' %}" rel="stylesheet" />
+        <title>批改作业</title>
+    </head>
+    <body>
+        <div class="form_login_div">
+                <form class="form_login" action="{% url 'homework:correct_task_action' teacher.id student.student_id task.id %}" method="post">
+                <br>
+                    <h1>批改作业</h1>
+                <p>
+                    <h4>作业名称：{{ task.task_title }}</h4>
+                    <h6>发布时间：{{ task.time }}</h6>
+                    <h6>总分：{{ task.value }}</h6>
+                </p>
+                <p>
+                    <h2>{{ student.name }}的作业</h2>
+                </p>
+                {% csrf_token %}
+                    <table id="tables">
+                    {% for k,v in dic.items %}
+                        <tr>
+                            <h3>{{ forloop.counter }}&nbsp;&nbsp;{{ k.question_title }} ({{ k.value }}分)</h3>
+                        </tr>
+                        <tr>
+                            {% if v == None %}
+                            <strong>暂未提交</strong>
+                            {% else%}
+                            <img width="80%" height="80%" src="/media/{{ v.answer }}">
+                        </tr>
+                        <tr>
+                            <br>
+                            提交时间：{{ v.time }}
+                            <br>
+                                给分：
+                                <input type="text" name="grade{{ v.id }}" value="{{ v.grade }}"/>
+                                {% if v.postil %}
+                                    <a href="{% url 'homework:show_postil' v.id %}">查看批注</a>
+                                {% else %}
+                                    <strong>未批注</strong>
+                                {% endif %}
+                            <br>
+                            <div style="font-size:20px">
+                                <a href="{% url 'homework:paint_image' teacher.id v.id %}">手动批注</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </div>
+                            {% endif %}
+                        </tr>
+                {% endfor %}
+                </table>
+                <br>
+                <input type="submit" value="确定">
+            </form>
+
+        </div><!-- /container -->
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'homework/css/index_student.css' %}" rel="stylesheet" />
+        <title>学生主页</title>
+    </head>
+    <body>
+        <div class="bgk">
+            <div class="bgk-image" style="background-image: url('../../static/homework/image/7.jpg')"></div>
+        </div>
+        <div class="form_login_div">
+            <form class="form_login" action="{% url 'homework:login_action' %}" method="post">
+            {% csrf_token %}
+                </br></br></br></br>
+                <h1>欢迎登录！{{ student.name }}同学</h1></br></br>
+                <div style="font-size:24px">
+                    <a href="{% url 'homework:change_password' student.student_id %}">修改密码</a>
+                </div></br></br>
+                <div style="font-size:24px">
+                    <a href="{% url 'homework:do_homework' student.student_id %}">提交作业</a>
+                </div></br></br>
+                <div style="font-size:24px">
+                    <a href="{% url 'homework:view_grade' student.student_id %}">查看成绩</a>
+                </div>
+            </form>
+        </div><!-- /container -->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

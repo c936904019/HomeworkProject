@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'homework/css/show_postil.css' %}" rel="stylesheet" />
+        <title>查看批改的内容</title>
+    </head>
+    <body>
+        <div class="form_login_div" style="padding-left:450px;">
+            <br><br><br><br><br>
+            <img width="640" height="480" src="/media/{{ question_grade.answer }}" style="position:absolute;z-index:1">
+            <img src="{{ question_grade.postil }}" width="640" height="540" style="position:absolute;z-index:2;background:transparent;border: 1px solid #aaaaaa">
+        </div><!-- /container -->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

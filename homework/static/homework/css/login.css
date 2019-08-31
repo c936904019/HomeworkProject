@@ -1,0 +1,89 @@
+.bgk {
+    margin: auto;
+    position: absolute;
+    width: 1366px;
+    height: 672px;
+    overflow: hidden;   /*溢出部分隐藏*/
+    background-size: cover;
+
+    -webkit-animation-name: kenburns;       /*-animation-name:为@keyframes 动画规定名称,必须与-animation-duration同时使用，否则无动画效果*/
+    animation-name: kenburns;
+
+    -webkit-animation-duration: 8s;    /*定义动画完成一个周期所需时间*/
+    animation-duration: 8s;
+
+    -webkit-animation-timing-function: linear;  /*规定动画从头到尾以相同速度播放，还有其他几个速度值*/
+    animation-timing-function: linear;
+
+    -webkit-animation-iteration-count: infinite;    /*规定动画播放次数，infinite为无限次*/
+    animation-iteration-count: infinite;
+
+    -webkit-transform: scale(1.2);      /*规定动画的缩放特效，scale：规定2D缩放*/
+    transform: scale(1.2);
+
+    -webkit-filter: blur(10px);       /*定义图片的模糊程度，显示为毛玻璃效果*/
+    filter: blur(2px);
+}
+.bgk-image:nth-child(1) {
+    height: 100%;
+    -webkit-animation-name: kenburns-1;       /*选择器上的名称*/
+    animation-name: kenburns-1;
+    z-index: 3;         /*动画堆叠顺序，值越大表示越先播放，离用户越近*/
+    background-size: cover;
+}
+.bgk-image:nth-child(2) {
+    height: 100%;
+    -webkit-animation-name: kenburns-2;
+    animation-name: kenburns-2;
+    z-index: 2;
+    background-size: cover;
+}
+.bgk-image:nth-child(3) {
+    height: 100%;
+    -webkit-animation-name: kenburns-3;
+    animation-name: kenburns-3;
+    z-index: 1;
+    background-size: cover;
+}
+.bgk-image:nth-child(4) {
+    height: 100%;
+    -webkit-animation-name: kenburns-4;
+    animation-name: kenburns-4;
+    z-index: 0;
+    background-size: cover;
+}
+.form_login{
+    margin: auto;
+    width:700px;
+    height: 480px;
+    top: 90px;
+    left: 366px;
+    position: absolute;
+    border-radius: 15px;
+    background: rgba(216,216,216,0.5);      /*设置form表单透明度*/
+    text-align: center;
+    overflow: hidden;
+}
+.form_login input{
+    outline:none;       /*outline （轮廓）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。*/
+    border:1px solid rgba(0,0,0,.49);       /*输入框边框的大小，实线，rgba（red,green,blue,a为透明度）,透明度处于0-1之间*/
+    -webkit-background-clip: padding-box;   /*background-clip 规定背景的绘制区域,padding-box为内容被裁减到内边距框*/
+    background-clip: padding-box;
+    background:rgba(216,216,216,0.4) ;
+    border-radius:6px;      /*对输入框进行圆角*/
+    padding:7px;       /*输入框中光标位置*/
+}
+.form_login input[type="text"]:focus,input[type="password"]:focus{
+    border-color:rgba(255,128,0,.75);
+    -webkit-box-shadow:0 0 18px rgba(255,153,18,3);
+}
+.form_login input[type="submit"]:hover{
+        background-color:#5f73e9;
+        background-image:-webkit-linear-gradient(bottom,#5f73e9 0%,#859bef 100%);
+        background-image:-moz-linear-gradient(bottom,#5f73e9 0%,#859bef 100%);
+        background-image:-ms-linear-gradient(bottom,#5f73e9 0%,#859bef 100%);
+        background-image:-o-linear-gradient(bottom,#5f73e9 0%,#859bef 100%);
+        -webkit-box-shadow: inset 0px 1px 0px #aab9f4;      /*当鼠标放在按钮上个时边框的阴影*/
+        box-shadow: inset 0px 1px 0px #aab9f4;
+        margin-top:0;
+    }

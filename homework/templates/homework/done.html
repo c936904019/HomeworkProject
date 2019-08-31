@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'homework/css/done.css' %}" rel="stylesheet" />
+        <title>操作成功</title>
+    </head>
+    <body>
+        <div class="form_login_div">
+            <form class="form_login">
+                </br></br></br></br></br></br>
+                <h1>操作成功</h1></br></br></br>
+                {% if role == 1 %}
+                    <div style="font-size:24px">
+                        <a href="{% url 'homework:index_teacher' teacher.id %}">返回教师主页</a>
+                    </div>
+                {% elif role == 2 %}
+                    <div style="font-size:24px">
+                        <a href="{% url 'homework:index_student' student.student_id %}">返回学生主页</a>
+                    </div>
+                {% endif %}
+            </form>
+        </div><!-- /container -->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

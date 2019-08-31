@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'homework/css/upload_homework.css' %}" rel="stylesheet" />
+        <title>发布作业</title>
+        <script>
+            var count = 0;
+            function addta()
+            {
+                count++
+                if(count<20)
+                {
+                    var oTab = document.getElementById('tables');
+                    var oTr = document.createElement('tr');
+                    oTr.innerHTML="<tr ><td>"+count+"<input type='text' name='question"+count+"'/></td><td>分值<input type='number' name='value"+count+"'/></td></tr>";
+                    oTab.appendChild(oTr);
+                }
+                else
+                {
+                    alert("不能再增加题目了！")
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="form_login_div">
+                <form class="form_login" action="{% url 'homework:upload_homework_action' teacher.id %}" method="post">
+                    </br>
+                    <h1>请发布新的作业</h1>
+                    </br>
+                    {% csrf_token %}
+                    <p>
+                        <label>作业名称：
+                            <input type="text" name="task_title"/>
+                        </label>
+                    </p>
+                    <p>
+                        <input type="button" class="button" value="新增题目" onclick="addta()"/>
+                    </p>
+                    <p>
+                        <table id="tables" align="center">
+                        </table>
+                    </p>
+                    <input type="submit" value="确定" onclick="">
+                </form>
+        </div><!-- /container -->
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

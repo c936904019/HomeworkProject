@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'homework/css/view_upload_list.css' %}" rel="stylesheet" />
+        <title>查看作业提交情况</title>
+    </head>
+    <body>
+        <div class="form_login_div">
+            <form class="form_login">
+                <h1>作业提交情况</h1>
+                <p>
+                    <h3>作业名称：{{ task.task_title }}</h3>
+                    <h6>发布时间：{{ task.time }}</h6>
+                    <h6>总分：{{ task.value }}</h6>
+                </p>
+                <p>
+                    <h3>作业未提交的学生</h3>
+                    {% for student0 in students0 %}
+                        {{ student0.name }}
+                    {% endfor %}
+                    <br>
+                    <h3>作业已提交但未批改的学生</h3>
+                    {% for student1 in students1 %}
+                        <a href="{% url 'homework:correct_task' teacher.id student1.student_id task.id%}">{{ student1.name }}</a>
+                    {% endfor %}
+                    <br>
+                    <h3>作业已批改的学生</h3>
+                    {% for k,v in dic.items %}
+                        <a href="{% url 'homework:correct_task' teacher.id k.student_id task.id%}">{{ k.name }}</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;成绩：{{ v }}
+                        <br>
+                    {% endfor %}
+                    <br>
+                </p>
+            </form>
+        </div><!-- /container -->
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
